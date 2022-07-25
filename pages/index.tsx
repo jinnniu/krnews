@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { motion } from "framer-motion";
 import NavBar from "../components/navbar";
 import Loader from "../components/Loader";
@@ -19,7 +18,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
-  flex-wrap: wrap-reverse;
+  flex-wrap: wrap;
   gap: 3rem;
   a {
     font-size: 1.5rem;
@@ -70,9 +69,6 @@ interface NewsDetailInterface {
 }
 
 const Home: NextPage = () => {
-  const router = useRouter();
-  // const { params } = router.query;
-  // console.log({ params });
   const [entertainment, setEntertainment] = useState<Newsinterface>();
   const [business, setBusiness] = useState<Newsinterface>();
   const [health, setHealth] = useState<Newsinterface>();
@@ -81,9 +77,8 @@ const Home: NextPage = () => {
   const [technology, setTechnology] = useState<Newsinterface>();
   const [loading, setLoading] = useState(true);
   const [position, setPosition] = useState(0);
-  const [isActive, setIsActive] = useState(false);
   const [data, setData] = useState({ titleArti: "", urlArti: "" });
-  console.log(data);
+  // console.log(data);
   useEffect(() => {
     (async () => {
       const entertainment = await (await fetch(`/api/entertainment`)).json();
@@ -113,22 +108,13 @@ const Home: NextPage = () => {
   //   setSelectedArticle(true);
   // };
 
-  // const onArticles = () => {
-  //   setIsActive((current) => !current);
+  // // Modals
+  // const [open, setOpen] = useState(false);
+  // const onOpenModal = () => setOpen(true);
+  // const onCloseModal = () => {
+  //   router.push("/");
+  //   setOpen(false);
   // };
-
-  // const (event)=> {setData({titleArti: news.title, urlArti: news.url})} = (event: any) => {
-  //   setData({ title: event.target.value, url: event.target.value });
-  // };
-  // console.log(data);
-
-  // Modals
-  const [open, setOpen] = useState(false);
-  const onOpenModal = () => setOpen(true);
-  const onCloseModal = () => {
-    router.push("/");
-    setOpen(false);
-  };
 
   // make the page for Error situation
   const { error } = useSWR(entertainment, setEntertainment);
@@ -160,10 +146,6 @@ const Home: NextPage = () => {
                 >
                   <Link
                     href={`/?articles=${news.publishedAt}?title=${news.title}`}
-                    // href={{
-                    //   pathname: `/?articles=${news.publishedAt}`,
-                    //   query: data,
-                    // }}
                     as={`/articles/${news.publishedAt}`}
                   >
                     <NewsTitle
@@ -199,10 +181,6 @@ const Home: NextPage = () => {
                 >
                   <Link
                     href={`/?articles=${news.publishedAt}?title=${news.title}`}
-                    // href={{
-                    //   pathname: `/?articles=${news.publishedAt}`,
-                    //   query: data,
-                    // }}
                     as={`/articles/${news.publishedAt}`}
                   >
                     <NewsTitle
@@ -238,10 +216,6 @@ const Home: NextPage = () => {
                 >
                   <Link
                     href={`/?articles=${news.publishedAt}?title=${news.title}`}
-                    // href={{
-                    //   pathname: `/?articles=${news.publishedAt}`,
-                    //   query: data,
-                    // }}
                     as={`/articles/${news.publishedAt}`}
                   >
                     <NewsTitle
@@ -277,10 +251,6 @@ const Home: NextPage = () => {
                 >
                   <Link
                     href={`/?articles=${news.publishedAt}?title=${news.title}`}
-                    // href={{
-                    //   pathname: `/?articles=${news.publishedAt}`,
-                    //   query: data,
-                    // }}
                     as={`/articles/${news.publishedAt}`}
                   >
                     <NewsTitle
@@ -316,10 +286,6 @@ const Home: NextPage = () => {
                 >
                   <Link
                     href={`/?articles=${news.publishedAt}?title=${news.title}`}
-                    // href={{
-                    //   pathname: `/?articles=${news.publishedAt}`,
-                    //   query: data,
-                    // }}
                     as={`/articles/${news.publishedAt}`}
                   >
                     <NewsTitle
@@ -355,10 +321,6 @@ const Home: NextPage = () => {
                 >
                   <Link
                     href={`/?articles=${news.publishedAt}?title=${news.title}`}
-                    // href={{
-                    //   pathname: `/?articles=${news.publishedAt}`,
-                    //   query: data,
-                    // }}
                     as={`/articles/${news.publishedAt}`}
                   >
                     <NewsTitle
