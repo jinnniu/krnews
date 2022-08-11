@@ -7,53 +7,70 @@ import NavBar from "../components/navbar";
 import Loader from "../components/Loader";
 import useSWR from "swr";
 import "react-responsive-modal/styles.css";
-import { Modal } from "react-responsive-modal";
 import ModalContainer from "../components/ModalContainer";
-// import ModalContainer, { modalStyles } from "../components/ModalContainer";
+// import { Modal } from "react-responsive-modal";
 
 const Container = styled.div`
-  width: 100%;
+  width: 50vw;
   height: 100%;
-  background-color: white;
+  background-color: #ffffff;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-around;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 0.1rem;
+  padding: 3rem;
+  margin: 0 auto;
+  border-radius: 15px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
   a {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+  }
+`;
+
+const WindowBar = styled.div`
+  position: absolute;
+  background-color: #f2f2f2;
+  width: 100%;
+  height: 30px;
+  border-radius: 15px 15px 0px 0px;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  gap: 5px;
+  top: 0;
+  div {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    &:nth-child(1) {
+      background-color: #ffa0a0;
+    }
+    &:nth-child(2) {
+      background-color: #ffe2a0;
+    }
+    &:nth-child(3) {
+      background-color: #9ce58c;
+    }
   }
 `;
 
 //animation
 const ItemVariants = {
   normal: {
-    scale: 1,
+    // scale: 1,
+    filter: "blur(0px)",
   },
   hover: {
-    scale: 1.3,
+    // scale: 1.3,
+    filter: "blur(7px)",
     transition: { delay: 0.1, type: "spring" },
   },
 };
 
-const NewsItem = styled(motion.div)`
-  /* position: sticky;
-  &:nth-child(2n) {
-    bottom: 0;
-  }
-  &:nth-child(2n + 1) {
-    top: 0;
-  } */
-`;
-
-const NewsTitle = styled(motion.a)`
-  /* position: absolute; */
-`;
-
-// const Articles = styled(motion.div)`
-//   position: absolute;
-//   width: 100%;
-// `;
+const NewsItem = styled(motion.div)``;
+const NewsTitle = styled(motion.a)``;
 
 interface Newsinterface {
   totalResults: number;
@@ -133,6 +150,12 @@ const Home: NextPage = () => {
         <>
           <NavBar />
           <Container>
+            <WindowBar>
+              <div></div>
+              <div></div>
+              <div></div>
+            </WindowBar>
+
             {entertainment?.articles.map((news) => (
               <>
                 <NewsItem
