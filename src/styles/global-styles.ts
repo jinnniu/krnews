@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     min-width: 320px;
   }
   body {
-    /* overflow-y: hidden; */
+    overflow: hidden;
     padding: 1.4rem;
   }
   *,
@@ -17,6 +17,6 @@ export const GlobalStyle = createGlobalStyle`
   *::after {
     box-sizing: inherit;
   }
-  * { font-family: 'Helvetica', "Arial", 'Sans-serif';}
+  * { font-family: 'Times New Roman', Times, serif }
   a { cursor: pointer; text-decoration: none; }
 `;
